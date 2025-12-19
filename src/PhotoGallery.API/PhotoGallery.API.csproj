@@ -22,7 +22,7 @@
     <ItemGroup>
       <Folder Include="Apis\Album\Requests\" />
       <Folder Include="Apis\Album\Responses\" />
-      <Folder Include="Apis\User\Reponses\" />
+      <Folder Include="Apis\Auth\Reponses\" />
     </ItemGroup>
 
 </Project>

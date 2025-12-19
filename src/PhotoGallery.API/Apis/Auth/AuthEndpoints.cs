@@ -1,6 +1,6 @@
 namespace PhotoGallery.API.Apis;
 
-public class UserEndpoints
+public class AuthEndpoints
 {
     
 }
