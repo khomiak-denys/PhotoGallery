@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoGallery.API", "PhotoGallery.API\PhotoGallery.API.csproj", "{A0462038-E402-460F-B698-2A129DB358CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoGallery.Domain", "PhotoGallery.Domain\PhotoGallery.Domain.csproj", "{498F4B36-A630-4149-85F1-04D6AAC8968B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoGallery.UseCases", "PhotoGallery.UseCases\PhotoGallery.UseCases.csproj", "{69B22940-C46F-4C81-8B34-2E1B66AC8881}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoGallery.Infrastructure", "PhotoGallery.Infrastructure\PhotoGallery.Infrastructure.csproj", "{F4A3E9F6-CB41-4950-91D4-923B583F929F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A0462038-E402-460F-B698-2A129DB358CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0462038-E402-460F-B698-2A129DB358CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0462038-E402-460F-B698-2A129DB358CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0462038-E402-460F-B698-2A129DB358CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{498F4B36-A630-4149-85F1-04D6AAC8968B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{498F4B36-A630-4149-85F1-04D6AAC8968B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{498F4B36-A630-4149-85F1-04D6AAC8968B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{498F4B36-A630-4149-85F1-04D6AAC8968B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69B22940-C46F-4C81-8B34-2E1B66AC8881}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69B22940-C46F-4C81-8B34-2E1B66AC8881}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69B22940-C46F-4C81-8B34-2E1B66AC8881}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69B22940-C46F-4C81-8B34-2E1B66AC8881}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4A3E9F6-CB41-4950-91D4-923B583F929F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4A3E9F6-CB41-4950-91D4-923B583F929F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4A3E9F6-CB41-4950-91D4-923B583F929F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4A3E9F6-CB41-4950-91D4-923B583F929F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
