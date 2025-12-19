@@ -4,6 +4,6 @@ namespace PhotoGallery.Domain.User;
 
 public interface IUserRepository
 {
-    public User GetByLogin(string login);
+    public Task<User?> GetByLoginAsync(string login);
     public void Add(User user);
 }
