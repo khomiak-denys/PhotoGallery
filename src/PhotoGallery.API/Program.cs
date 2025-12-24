@@ -146,16 +146,20 @@ using PhotoGallery.UseCases.User.Login;
     });
 
     var app = builder.Build();
-    var prefix = app.MapGroup("/api/v1");
-    app.MapEndpoints(prefix);
     
-    app.UseAuthentication();
-    app.UseAuthorization();
-
     app.UseExceptionHandler();
     app.UseCors("AllowFrontend");
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseAuthentication();
+    app.UseAuthorization();
+    
+    var prefix = app.MapGroup("/api/v1");
+    app.MapEndpoints(prefix);
+
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
 
     app.Run();
     
