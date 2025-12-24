@@ -12,6 +12,8 @@
       <PackageReference Include="MediatR" Version="13.1.0" />
       <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.18" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.10" />
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+      <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.6.2" />
     </ItemGroup>
 
     <ItemGroup>
@@ -22,7 +24,6 @@
     <ItemGroup>
       <Folder Include="Apis\Album\Requests\" />
       <Folder Include="Apis\Album\Responses\" />
-      <Folder Include="Apis\Auth\Reponses\" />
     </ItemGroup>
 
 </Project>
