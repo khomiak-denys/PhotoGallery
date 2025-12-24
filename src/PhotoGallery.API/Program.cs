@@ -22,9 +22,6 @@ using PhotoGallery.UseCases.User.Login;
 
     var builder = WebApplication.CreateBuilder(args);
     
-    
-    builder.Services.AddControllers();
-    builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddScoped<IUserRepository, EFUserRepository>();
     builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
     builder.Services.AddScoped<ITokenService, TokenService>();
@@ -152,6 +149,11 @@ using PhotoGallery.UseCases.User.Login;
     var prefix = app.MapGroup("/api/v1");
     app.MapEndpoints(prefix);
     
+    app.UseAuthentication();
+    app.UseAuthorization();
+
+    app.UseExceptionHandler();
+    app.UseCors("AllowFrontend");
     app.UseSwagger();
     app.UseSwaggerUI();
 
