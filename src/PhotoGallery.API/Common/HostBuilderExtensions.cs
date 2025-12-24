@@ -4,7 +4,7 @@ using PhotoGallery.API.Common.Abstractions;
 
 namespace PhotoGallery.API.Common;
 
-public static class HostBuilderExtentions
+public static class HostBuilderExtensions
 {
     public static void AddEndpoints(
         this IServiceCollection services,

@@ -1,4 +1,4 @@
-namespace PhotoGallery.API.Apis.Reponses;
+namespace PhotoGallery.API.Apis.Auth.Responses;
 
 public record LoginResponse
 (

@@ -1,10 +1,8 @@
-using MediatR;
-using Microsoft.AspNetCore.Identity.Data;
-using PhotoGallery.API.Apis.Reponses;
+using PhotoGallery.API.Apis.Auth.Responses;
 using PhotoGallery.API.Apis.Requests;
 using PhotoGallery.API.Common.Abstractions;
 
-namespace PhotoGallery.API.Apis;
+namespace PhotoGallery.API.Apis.Auth;
 
 public class Login : IEndpoint
 {

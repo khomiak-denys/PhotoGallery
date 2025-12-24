@@ -1,5 +1,5 @@
 using AutoMapper;
-using PhotoGallery.API.Apis.Reponses;
+using PhotoGallery.API.Apis.Auth.Responses;
 using PhotoGallery.UseCases.User.Common;
 
 namespace PhotoGallery.API.Mapping;

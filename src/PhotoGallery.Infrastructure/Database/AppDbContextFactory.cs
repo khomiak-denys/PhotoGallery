@@ -8,12 +8,6 @@ public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
     public AppDbContext CreateDbContext(string[] args)
     {
         DotNetEnv.Env.Load("../../.env");
-        
-        var config = new ConfigurationBuilder()
-            .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../Tickefy.API"))
-            .AddJsonFile("appsettings.json", optional: false)
-            .AddEnvironmentVariables()
-            .Build();
 
         var connectionString = 
             $"Host={Environment.GetEnvironmentVariable("DB_HOST")};" +

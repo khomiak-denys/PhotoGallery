@@ -90,7 +90,7 @@ using PhotoGallery.UseCases.User.Login;
     {
         options.AddPolicy("AllowFrontend", policy =>
         {
-            policy.WithOrigins("http://localhost:4200", "http://192.168.31.211:4200", "http://192.168.31.98:4200")
+            policy.WithOrigins("http://localhost:4200")
                 .WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
                 .WithHeaders("Content-Type", "Authorization")
                 .AllowCredentials();
@@ -151,6 +151,9 @@ using PhotoGallery.UseCases.User.Login;
     var app = builder.Build();
     var prefix = app.MapGroup("/api/v1");
     app.MapEndpoints(prefix);
+    
+    app.UseSwagger();
+    app.UseSwaggerUI();
 
     app.Run();
     
