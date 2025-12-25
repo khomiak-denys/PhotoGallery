@@ -10,7 +10,8 @@ public class Login : IEndpoint
     {
         app.MapPost("/auth/login", HandleLogin)
             .AllowAnonymous()
-            .Produces<LoginResponse>();
+            .Produces<LoginResponse>(StatusCodes.Status200OK)
+            .ProducesValidationProblem(StatusCodes.Status400BadRequest);
     }
 
     private static async Task<IResult> HandleLogin(LoginUserRequest loginRequest, [AsParameters] AuthServices services)
