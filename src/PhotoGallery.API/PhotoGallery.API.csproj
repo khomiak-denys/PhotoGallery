@@ -22,7 +22,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Apis\Album\Requests\" />
       <Folder Include="Apis\Album\Responses\" />
     </ItemGroup>
 
