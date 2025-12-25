@@ -5,7 +5,7 @@ using PhotoGallery.UseCases.Album.GetAll;
 
 namespace PhotoGallery.API.Apis;
 
-public class GetAll : IEndpoint 
+public class GetAllAlbumsEndpoint : IEndpoint 
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
