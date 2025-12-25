@@ -17,7 +17,12 @@ public class EFUserRepository : IUserRepository
     {
         return await _dbContext.Users.FirstOrDefaultAsync(u => u.Login == login);
     }
-    
+
+    public async Task<User?> GetByIdAsync(Guid id)
+    {
+        return await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == id);
+    }
+
     public void Add(User user)
     {
         _dbContext.Users.Add(user);
