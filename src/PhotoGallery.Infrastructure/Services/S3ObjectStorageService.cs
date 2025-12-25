@@ -12,20 +12,21 @@ public class S3ObjectStorageService : IObjectStorageService
 {
     private readonly ObjectStorageSettings _settings;
     private readonly IAmazonS3 _s3Client;
+    private readonly IAmazonS3 _presignClient;
 
     public S3ObjectStorageService(IOptions<ObjectStorageSettings> options)
     {
         _settings = options.Value;
 
         var credentials = new BasicAWSCredentials(_settings.AccessKey, _settings.SecretKey);
-        var config = new AmazonS3Config
-        {
-            ServiceURL = _settings.Endpoint,
-            ForcePathStyle = true,
-            RegionEndpoint = RegionEndpoint.GetBySystemName(_settings.Region)
-        };
+        _s3Client = new AmazonS3Client(credentials, BuildConfig(_settings.Endpoint));
 
-        _s3Client = new AmazonS3Client(credentials, config);
+        var presignEndpoint = string.IsNullOrWhiteSpace(_settings.PublicEndpoint)
+            ? _settings.Endpoint
+            : _settings.PublicEndpoint;
+        _presignClient = presignEndpoint == _settings.Endpoint
+            ? _s3Client
+            : new AmazonS3Client(credentials, BuildConfig(presignEndpoint));
     }
 
     public Task<string> GetFileUrl(string objectKey, TimeSpan? expires = null)
@@ -42,6 +43,16 @@ public class S3ObjectStorageService : IObjectStorageService
             Expires = DateTime.UtcNow.Add(expires ?? TimeSpan.FromMinutes(10))
         };
 
-        return Task.FromResult(_s3Client.GetPreSignedURL(request));
+        return Task.FromResult(_presignClient.GetPreSignedURL(request));
+    }
+
+    private AmazonS3Config BuildConfig(string serviceUrl)
+    {
+        return new AmazonS3Config
+        {
+            ServiceURL = serviceUrl,
+            ForcePathStyle = true,
+            RegionEndpoint = RegionEndpoint.GetBySystemName(_settings.Region)
+        };
     }
 }

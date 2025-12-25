@@ -91,6 +91,7 @@ using PhotoGallery.UseCases.User.Login;
     builder.Services.Configure<ObjectStorageSettings>(options =>
     {
         options.Endpoint = Environment.GetEnvironmentVariable("S3_ENDPOINT") ?? string.Empty;
+        options.PublicEndpoint = Environment.GetEnvironmentVariable("S3_PUBLIC_ENDPOINT") ?? string.Empty;
         options.AccessKey = Environment.GetEnvironmentVariable("S3_ACCESS_KEY") ?? string.Empty;
         options.SecretKey = Environment.GetEnvironmentVariable("S3_SECRET_KEY") ?? string.Empty;
         options.Bucket = Environment.GetEnvironmentVariable("S3_BUCKET") ?? string.Empty;
