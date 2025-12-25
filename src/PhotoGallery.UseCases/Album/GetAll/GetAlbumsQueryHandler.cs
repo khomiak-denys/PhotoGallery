@@ -12,7 +12,7 @@ public class GetAlbumsQueryHandler(
 {
     public async Task<List<AlbumResult>> Handle(GetAlbumsQuery query, CancellationToken cancellationToken)
     {
-        var albums = albumRepository.GetAll(query.Page, query.PageSize);
+        var albums = await albumRepository.GetAll(query.Page, query.PageSize);
         
         var result = mapper.Map<List<AlbumResult>>(albums);
         

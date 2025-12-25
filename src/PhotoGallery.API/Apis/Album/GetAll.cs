@@ -17,7 +17,7 @@ public class GetAll : IEndpoint
     {  
         var result = await services.Mediator.Send(query);
         
-        var response = services.Mapper.Map<AlbumResponse>(result);
+        var response = services.Mapper.Map<List<AlbumResponse>>(result);
         return Results.Ok(response);
     }
 }
