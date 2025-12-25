@@ -9,6 +9,9 @@ using PhotoGallery.API.Common;
 using PhotoGallery.API.ErrorHandling;
 using PhotoGallery.API.ErrorHandling.ExceptionMapper;
 using PhotoGallery.API.Mapping;
+using PhotoGallery.Domain.Album;
+using PhotoGallery.Domain.Like;
+using PhotoGallery.Domain.Photo;
 using PhotoGallery.Domain.User;
 using PhotoGallery.Infrastructure.Database;
 using PhotoGallery.Infrastructure.Options;
@@ -23,9 +26,13 @@ using PhotoGallery.UseCases.User.Login;
     var builder = WebApplication.CreateBuilder(args);
     
     builder.Services.AddScoped<IUserRepository, EFUserRepository>();
+    builder.Services.AddScoped<IAlbumRepository, EFAlbumRepository>();
+    builder.Services.AddScoped<IPhotoRepository, EFPhotoRepository>();
+    builder.Services.AddScoped<ILikeRepository, EFLikeRepository>();
     builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
     builder.Services.AddScoped<ITokenService, TokenService>();
     builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+    builder.Services.AddScoped<IObjectStorageService, S3ObjectStorageService>();
 
     builder.Services.AddProblemDetails(configure =>
     {
@@ -55,7 +62,8 @@ using PhotoGallery.UseCases.User.Login;
         cfg => { cfg.AllowNullCollections = true; },
         new[]
         {
-            typeof(LoginMappingProfile).Assembly
+            typeof(LoginMappingProfile).Assembly,
+            typeof(PhotoGallery.UseCases.Mapping.AlbumMappingProfile).Assembly
         }
     );
 
@@ -78,6 +86,15 @@ using PhotoGallery.UseCases.User.Login;
         options.Issuer = jwtIssuer!;
         options.Audience = jwtAudience!;
         options.TokenValidityMins = jwtValidityMins;
+    });
+
+    builder.Services.Configure<ObjectStorageSettings>(options =>
+    {
+        options.Endpoint = Environment.GetEnvironmentVariable("S3_ENDPOINT") ?? string.Empty;
+        options.AccessKey = Environment.GetEnvironmentVariable("S3_ACCESS_KEY") ?? string.Empty;
+        options.SecretKey = Environment.GetEnvironmentVariable("S3_SECRET_KEY") ?? string.Empty;
+        options.Bucket = Environment.GetEnvironmentVariable("S3_BUCKET") ?? string.Empty;
+        options.Region = Environment.GetEnvironmentVariable("S3_REGION") ?? "us-east-1";
     });
 
     builder.Services.AddDbContextFactory<AppDbContext>(options =>

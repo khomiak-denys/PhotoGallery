@@ -13,6 +13,11 @@ public class EFAlbumRepository(
         context.Albums.Add(album);
     }
 
+    public void Remove(Album album)
+    {
+        context.Albums.Remove(album);
+    }
+
     public Task<List<Album>> GetAll(int page = 1, int pageSize = 5)
     {
         return context.Albums
@@ -32,5 +37,12 @@ public class EFAlbumRepository(
             .Skip(pageSize * (page - 1))
             .Take(pageSize)
             .ToListAsync();
+    }
+
+    public Task<Album?> GetById(Guid id)
+    {
+        return context.Albums
+            .Include(a => a.Photos.Take(1))
+            .FirstOrDefaultAsync(a => a.Id == id);
     }
 }

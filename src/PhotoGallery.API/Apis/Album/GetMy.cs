@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using PhotoGallery.API.Apis.Album.Requests;
 using PhotoGallery.API.Apis.Requests;
 using PhotoGallery.API.Apis.Responses;
 using PhotoGallery.API.Common.Abstractions;

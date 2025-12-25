@@ -1,6 +1,6 @@
 using PhotoGallery.UseCases.Album.GetMy;
 
-namespace PhotoGallery.API.Apis.Requests;
+namespace PhotoGallery.API.Apis.Album.Requests;
 
 public class GetMyAlbumsRequest
 {
