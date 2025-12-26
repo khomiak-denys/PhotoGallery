@@ -7,11 +7,12 @@ public class Photo : EntityBase
     public string Path { get; protected set; }
     public Guid? AlbumId { get; protected set; }
 
-    public static Photo Create(string path)
+    public static Photo Create(string path, Guid? albumId = null)
     {
         var photo = new Photo
         {
-            Path = path
+            Path = path,
+            AlbumId = albumId
         };
         photo.OnCreate();
         return photo;

@@ -46,6 +46,24 @@ public class S3ObjectStorageService : IObjectStorageService
         return Task.FromResult(_presignClient.GetPreSignedURL(request));
     }
 
+    public Task<string> GetUploadUrl(string objectKey, TimeSpan? expires = null)
+    {
+        if (string.IsNullOrWhiteSpace(objectKey))
+        {
+            return Task.FromResult(string.Empty);
+        }
+
+        var request = new GetPreSignedUrlRequest
+        {
+            BucketName = _settings.Bucket,
+            Key = objectKey,
+            Verb = HttpVerb.PUT,
+            Expires = DateTime.UtcNow.Add(expires ?? TimeSpan.FromMinutes(10))
+        };
+
+        return Task.FromResult(_presignClient.GetPreSignedURL(request));
+    }
+
     private AmazonS3Config BuildConfig(string serviceUrl)
     {
         return new AmazonS3Config
