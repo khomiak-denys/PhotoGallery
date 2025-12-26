@@ -16,8 +16,13 @@ public class GetAlbumByIdEndpoint : IEndpoint
     {
         var query = new GetAlbumByIdQuery(id);
         var result = await services.Mediator.Send(query);
-        
-        var response = services.Mapper.Map<AlbumResponse>(result);
+
+        var response = new AlbumResponse
+        {
+            Id = result.Id,
+            Name = result.Name,
+            CoverUrl = await services.ObjectStorageService.GetFileUrl(result.CoverPath)
+        };
         return Results.Ok(response);
     }
 }

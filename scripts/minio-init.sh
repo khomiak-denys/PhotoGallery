@@ -9,3 +9,4 @@ MINIO_BUCKET=${MINIO_BUCKET:-photogallery}
 
 mc alias set "$MINIO_ALIAS" "$MINIO_ENDPOINT" "$MINIO_ACCESS_KEY" "$MINIO_SECRET_KEY"
 mc mb -p "${MINIO_ALIAS}/${MINIO_BUCKET}" || true
+mc cors set /init/minio-cors.json "${MINIO_ALIAS}/${MINIO_BUCKET}"

@@ -16,8 +16,13 @@ public class GetAllAlbumsEndpoint : IEndpoint
     private static async Task<IResult> GetAlbums([AsParameters] GetAlbumsQuery query, [AsParameters] AlbumServices services)
     {  
         var result = await services.Mediator.Send(query);
-        
-        var response = services.Mapper.Map<List<AlbumResponse>>(result);
+
+        var response = await Task.WhenAll(result.Select(async album => new AlbumResponse
+        {
+            Id = album.Id,
+            Name = album.Name,
+            CoverUrl = await services.ObjectStorageService.GetFileUrl(album.CoverPath)
+        }));
         return Results.Ok(response);
     }
 }

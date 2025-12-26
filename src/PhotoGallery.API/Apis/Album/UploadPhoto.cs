@@ -22,8 +22,17 @@ public class UploadPhotoEndpoint : IEndpoint
     private static async Task<IResult> UploadPhoto(
         Guid id,
         UploadPhotoRequest request,
+        ILogger<UploadPhotoEndpoint> logger,
         [AsParameters] PhotoServices services)
     {
+        logger.LogInformation(
+            "UploadPhoto S3 env: Endpoint='{Endpoint}', PublicEndpoint='{PublicEndpoint}', Bucket='{Bucket}', AccessKeySet={AccessKeySet}",
+            Environment.GetEnvironmentVariable("S3_ENDPOINT"),
+            Environment.GetEnvironmentVariable("S3_PUBLIC_ENDPOINT"),
+            Environment.GetEnvironmentVariable("S3_BUCKET") ?? Environment.GetEnvironmentVariable("OBJECT_STORAGE_BUCKET"),
+            !string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("S3_ACCESS_KEY"))
+        );
+
         var user = services.HttpContextAccessor.HttpContext?.User;
 
         var userIdClaim = user?.FindFirst(ClaimTypes.NameIdentifier)?.Value;

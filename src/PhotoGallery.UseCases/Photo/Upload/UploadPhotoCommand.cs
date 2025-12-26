@@ -9,4 +9,5 @@ public class UploadPhotoCommand : ICommand<UploadPhotoResult>
     public Guid UserId { get; init; }
     public UserRoles UserRole { get; init; }
     public string FileName { get; init; } = string.Empty;
+    public string? ContentType { get; init; }
 }

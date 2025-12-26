@@ -6,6 +6,7 @@ namespace PhotoGallery.API.Apis.Album.Requests;
 public class UploadPhotoRequest
 {
     public string FileName { get; init; } = string.Empty;
+    public string? ContentType { get; init; }
 
     public UploadPhotoCommand ToCommand(Guid albumId, Guid userId, UserRoles userRole)
     {
@@ -14,7 +15,8 @@ public class UploadPhotoRequest
             AlbumId = albumId,
             UserId = userId,
             UserRole = userRole,
-            FileName = FileName
+            FileName = FileName,
+            ContentType = ContentType
         };
     }
 }

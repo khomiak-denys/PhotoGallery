@@ -88,18 +88,18 @@ using PhotoGallery.UseCases.User.Login;
         options.TokenValidityMins = jwtValidityMins;
     });
 
-    builder.Services.Configure<ObjectStorageSettings>(options =>
-    {
-        options.Endpoint = Environment.GetEnvironmentVariable("S3_ENDPOINT") ?? string.Empty;
-        options.PublicEndpoint = Environment.GetEnvironmentVariable("S3_PUBLIC_ENDPOINT") ?? string.Empty;
-        options.AccessKey = Environment.GetEnvironmentVariable("S3_ACCESS_KEY") ?? string.Empty;
-        options.SecretKey = Environment.GetEnvironmentVariable("S3_SECRET_KEY") ?? string.Empty;
-        options.Bucket = Environment.GetEnvironmentVariable("S3_BUCKET") ?? string.Empty;
-        options.Region = Environment.GetEnvironmentVariable("S3_REGION") ?? "us-east-1";
-    });
+builder.Services.Configure<ObjectStorageSettings>(options =>
+{
+    options.Endpoint = Environment.GetEnvironmentVariable("S3_ENDPOINT") ?? string.Empty;
+    options.PublicEndpoint = Environment.GetEnvironmentVariable("S3_PUBLIC_ENDPOINT") ?? string.Empty;
+    options.AccessKey = Environment.GetEnvironmentVariable("S3_ACCESS_KEY") ?? string.Empty;
+    options.SecretKey = Environment.GetEnvironmentVariable("S3_SECRET_KEY") ?? string.Empty;
+    options.Bucket = Environment.GetEnvironmentVariable("OBJECT_STORAGE_BUCKET");
+    options.Region = Environment.GetEnvironmentVariable("S3_REGION") ?? "us-east-1";
+});
 
-    builder.Services.AddDbContextFactory<AppDbContext>(options =>
-        options.UseNpgsql(postgresConnection));
+builder.Services.AddDbContextFactory<AppDbContext>(options =>
+    options.UseNpgsql(postgresConnection));
 
     builder.Services.AddCors(options =>
     {

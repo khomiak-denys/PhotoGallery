@@ -36,7 +36,7 @@ public class UploadPhotoCommandHandler(
         }
 
         var objectKey = $"albums/{command.AlbumId}/{Guid.NewGuid()}{extension}";
-        var uploadUrl = await objectStorageService.GetUploadUrl(objectKey);
+        var uploadUrl = await objectStorageService.GetUploadUrl(objectKey, command.ContentType);
 
         var photo = Domain.Photo.Photo.Create(objectKey, command.AlbumId);
         photoRepository.Add(photo);
