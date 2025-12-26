@@ -27,6 +27,16 @@ public class EFPhotoRepository(
             .ToListAsync();
     }
 
+    public Task<List<Photo>> GetByAlbumId(Guid albumId, int page = 1, int pageSize = 5)
+    {
+        return context.Photos
+            .Where(photo => photo.AlbumId == albumId)
+            .OrderBy(photo => photo.Id)
+            .Skip(pageSize * (page - 1))
+            .Take(pageSize)
+            .ToListAsync();
+    }
+
     public Task<Photo?> GetById(Guid id)
     {
         return context.Photos.FirstOrDefaultAsync(p => p.Id == id);

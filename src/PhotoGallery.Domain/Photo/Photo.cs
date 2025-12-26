@@ -5,6 +5,7 @@ namespace PhotoGallery.Domain.Photo;
 public class Photo : EntityBase
 {
     public string Path { get; protected set; }
+    public Guid? AlbumId { get; protected set; }
 
     public static Photo Create(string path)
     {
