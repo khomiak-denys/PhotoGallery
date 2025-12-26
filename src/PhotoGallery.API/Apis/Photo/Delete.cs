@@ -1,23 +1,23 @@
 using Microsoft.AspNetCore.Mvc;
 using PhotoGallery.API.Common.Abstractions;
 using PhotoGallery.Domain.Common.UserRoles;
-using PhotoGallery.UseCases.Album.Delete;
+using PhotoGallery.UseCases.Photo.Delete;
 using System.Security.Claims;
 
 namespace PhotoGallery.API.Apis;
 
-public class DeleteAlbumEndpoint : IEndpoint
+public class DeletePhotoEndpoint : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapDelete("/albums/{id:guid}", DeleteAlbum)
+        app.MapDelete("/photos/{id:guid}", DeletePhoto)
             .RequireAuthorization()
             .Produces(StatusCodes.Status204NoContent)
             .ProducesProblem(StatusCodes.Status404NotFound)
             .ProducesProblem(StatusCodes.Status403Forbidden);
     }
 
-    private static async Task<IResult> DeleteAlbum(Guid id, [AsParameters] AlbumServices services)
+    private static async Task<IResult> DeletePhoto(Guid id, [AsParameters] PhotoServices services)
     {
         var user = services.HttpContextAccessor.HttpContext?.User;
 
@@ -38,9 +38,9 @@ public class DeleteAlbumEndpoint : IEndpoint
             return Results.Unauthorized();
         }
 
-        await services.Mediator.Send(new DeleteAlbumCommand
+        await services.Mediator.Send(new DeletePhotoCommand
         {
-            AlbumId = id,
+            PhotoId = id,
             UserId = userId,
             UserRole = userRole
         });

@@ -1,11 +1,11 @@
 using PhotoGallery.Domain.Common.UserRoles;
 using PhotoGallery.UseCases.Abstractions.Messaging;
 
-namespace PhotoGallery.UseCases.Album.Delete;
+namespace PhotoGallery.UseCases.Photo.Delete;
 
-public class DeleteAlbumCommand : ICommand
+public class DeletePhotoCommand : ICommand
 {
-    public Guid AlbumId { get; init; }
+    public Guid PhotoId { get; init; }
     public Guid UserId { get; init; }
     public UserRoles UserRole { get; init; }
 }

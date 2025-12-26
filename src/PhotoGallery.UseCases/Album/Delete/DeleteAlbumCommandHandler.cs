@@ -1,4 +1,5 @@
 using PhotoGallery.Domain.Album;
+using PhotoGallery.Domain.Common.UserRoles;
 using PhotoGallery.UseCases.Abstractions.Data;
 using PhotoGallery.UseCases.Abstractions.Messaging;
 using PhotoGallery.UseCases.Exceptions;
@@ -18,7 +19,7 @@ public class DeleteAlbumCommandHandler(
             throw new NotFoundException("Album", command.AlbumId);
         }
 
-        if (album.OwnerId != command.UserId)
+        if (command.UserRole != UserRoles.Admin && album.OwnerId != command.UserId)
         {
             throw new ForbiddenException("User is not the album owner.");
         }
