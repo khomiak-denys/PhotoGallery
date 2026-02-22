@@ -26,3 +26,4 @@ JWT_KEY=dfe7a23fefeea519e9bbfdd1a6be94c4b2e4529dd6b7cbea83f9959c2621b13c
 JWT_ISSUER=PhotoGallery.API  
 JWT_AUDIENCE=PhotoGallery.Client  
 JWT_VALIDITY_MINS=30  
+
